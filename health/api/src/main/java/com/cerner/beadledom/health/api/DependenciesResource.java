@@ -7,9 +7,6 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -35,20 +32,16 @@ public interface DependenciesResource {
   @ApiResponses(value = {
       @ApiResponse(code = 503, message = "unhealthy", response = HealthDependencyDto.class),
       @ApiResponse(code = 200, message = "healthy", response = HealthDependencyDto.class)})
-  @Operation(summary = "Dependency Listing",
-      description = "Returns the name, internal URL and external URL (if applicable) of all "
+  @io.swagger.annotations.ApiOperation(value = "Dependency Listing",
+      notes = "Returns the name, internal URL and external URL (if applicable) of all "
           + "dependencies.",
-      responses = {
-          @io.swagger.v3.oas.annotations.responses.ApiResponse(
-              responseCode = "200",
-              description = "healthy",
-              content = @Content(schema = @Schema(implementation = HealthDependencyDto.class))),
-          @io.swagger.v3.oas.annotations.responses.ApiResponse(
-              responseCode = "503",
-              description = "unhealthy",
-              content = @Content(schema = @Schema(implementation = HealthDependencyDto.class)))
-      }
-  )
+      response = HealthDependencyDto.class,
+      responseContainer = "List")
+  @io.swagger.annotations.ApiResponses(value = {
+      @io.swagger.annotations.ApiResponse(code = 503, message = "unhealthy",
+          response = HealthDependencyDto.class),
+      @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
+          response = HealthDependencyDto.class)})
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   List<HealthDependencyDto> getDependencyListing();
@@ -67,21 +60,17 @@ public interface DependenciesResource {
   @ApiResponses(value = {
       @ApiResponse(code = 503, message = "unhealthy", response = HealthDependencyDto.class),
       @ApiResponse(code = 200, message = "healthy", response = HealthDependencyDto.class)})
-  @Operation(summary = "Availability Check for Dependency",
-      description = "Invokes the basic availability check on the given dependency. "
-          + "The response code will match the code returned by the dependency, and will be "
-          + "omitted from the JSON.",
-      responses = {
-          @io.swagger.v3.oas.annotations.responses.ApiResponse(
-              responseCode = "200",
-              description = "healthy",
-              content = @Content(schema = @Schema(implementation = HealthDependencyDto.class))),
-          @io.swagger.v3.oas.annotations.responses.ApiResponse(
-              responseCode = "503",
-              description = "unhealthy",
-              content = @Content(schema = @Schema(implementation = HealthDependencyDto.class)))
-      }
-  )
+  @io.swagger.annotations.ApiOperation(value = "Availability Check for Dependency",
+      notes =
+          "Invokes the basic availability check on the given dependency. "
+              + "The response code will match the code returned by the dependency, and will be "
+              + "omitted from the JSON.",
+      response = HealthDependencyDto.class)
+  @io.swagger.annotations.ApiResponses(value = {
+      @io.swagger.annotations.ApiResponse(code = 503, message = "unhealthy",
+          response = HealthDependencyDto.class),
+      @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
+          response = HealthDependencyDto.class)})
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @JsonView(HealthJsonViews.Dependency.class)
