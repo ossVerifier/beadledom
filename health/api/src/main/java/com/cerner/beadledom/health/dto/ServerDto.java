@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 import java.util.Optional;
 
@@ -16,7 +15,7 @@ import java.util.Optional;
  * @since 1.4
  */
 @ApiModel(description = "Runtime and environment information of the server.")
-@Schema(description = "Runtime and environment information of the server.")
+@io.swagger.annotations.ApiModel(description = "Runtime and environment information of the server.")
 @AutoValue
 public abstract class ServerDto {
   /**
@@ -29,14 +28,16 @@ public abstract class ServerDto {
   }
 
   @ApiModelProperty("The name of the host which served this health check response")
-  @Schema(description = "The name of the host which served this health check response")
+  @io.swagger.annotations.ApiModelProperty(
+      "The name of the host which served this health check response")
   @JsonProperty("hostName")
   public abstract Optional<String> getHostName();
 
   @ApiModelProperty("The startup date/time of the service process that served the health check "
       + "response in ISO-8601 format")
-  @Schema(description = "The startup date/time of the service process that served the health check "
-      + "response in ISO-8601 format")
+  @io.swagger.annotations.ApiModelProperty(
+      "The startup date/time of the service process that served the health check response in "
+          + "ISO-8601 format")
   @JsonProperty("startupDateTime")
   public abstract Optional<Instant> getStartupDateTime();
 

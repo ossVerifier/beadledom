@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Optional;
 
 /**
@@ -14,7 +13,7 @@ import java.util.Optional;
 @ApiModel(
     description = "Provides information about a dependency of this service, such as an external "
         + "service that it relies on.")
-@Schema(
+@io.swagger.annotations.ApiModel(
     description = "Provides information about a dependency of this service, such as an external "
         + "service that it relies on.")
 @AutoValue
@@ -42,41 +41,44 @@ public abstract class HealthDependencyDto {
   }
 
   @ApiModelProperty("The id of the dependency")
-  @Schema(description = "The id of the dependency")
+  @io.swagger.annotations.ApiModelProperty("The id of the dependency")
   @JsonProperty("id")
   public abstract String getId();
 
   @ApiModelProperty("Indicates the health of the dependency")
-  @Schema(description = "The id of the dependency")
+  @io.swagger.annotations.ApiModelProperty("Indicates the health of the dependency")
   @JsonProperty("healthy")
   @JsonView({HealthJsonViews.Primary.class, HealthJsonViews.Diagnostic.class})
   public abstract boolean isHealthy();
 
   @ApiModelProperty("Indicates if this is a primary dependency of the service")
-  @Schema(description = "Indicates if this is a primary dependency of the service")
+  @io.swagger.annotations.ApiModelProperty(
+      "Indicates if this is a primary dependency of the service")
   @JsonProperty("primary")
   @JsonView(HealthJsonViews.Diagnostic.class)
   public abstract boolean isPrimary();
 
   @ApiModelProperty("Contains hyperlinks to other resources for health check")
-  @Schema(description = "Contains hyperlinks to other resources for health check")
+  @io.swagger.annotations.ApiModelProperty(
+      "Contains hyperlinks to other resources for health check")
   @JsonProperty("links")
   public abstract Optional<LinksDto> getLinks();
 
   @ApiModelProperty("The display name of the dependency")
-  @Schema(description = "The display name of the dependency")
+  @io.swagger.annotations.ApiModelProperty("The display name of the dependency")
   @JsonProperty("name")
   public abstract Optional<String> getName();
 
-  @ApiModelProperty("Indicates the type of dependency, which may have additional properties of that"
-      + " type")
-  @Schema(description = "Indicates the type of dependency, which may have additional properties of"
-      + " that type")
+  @ApiModelProperty(
+      "Indicates the type of dependency, which may have additional properties of that type")
+  @io.swagger.annotations.ApiModelProperty(
+      "Indicates the type of dependency, which may have additional properties of that type")
   @JsonProperty("type")
   public abstract Optional<TypeDto> getType();
 
   @ApiModelProperty("A human readable explanation of the health check status")
-  @Schema(description = "A human readable explanation of the health check status")
+  @io.swagger.annotations.ApiModelProperty(
+      "A human readable explanation of the health check status")
   @JsonProperty("message")
   public abstract Optional<String> getMessage();
 
