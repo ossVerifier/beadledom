@@ -16,7 +16,7 @@ import javax.inject.Inject;
 /**
  * Configures a service to serve Swagger 2 documentation at '/api-docs'.
  *
- * <p>To use this, you must provide a SwaggerConfig such as the following:
+ * <p>To use this, you must provide a Swagger Info object such as the following:
  *
  * <p><pre>{@code @Provides
  *   Info provideSwaggerConfig(ServiceMetadata serviceMetadata) {
