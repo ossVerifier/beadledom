@@ -41,6 +41,7 @@ class SwaggerModuleSpec extends UnitSpec {
   }
 }
 
+// TODO: Update archetype to use swagger 2.
 // TODO: Update site to talk about swagger 1 and 2 separately.
 // TODO: Test that the scanner gets registered by the lifecycle hook.
 // TODO: Put a comment explaining why the dependency has "jersey" in it.
