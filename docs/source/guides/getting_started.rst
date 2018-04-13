@@ -2,10 +2,10 @@
 
 .. Defined for inline java code highlighting
 .. role:: java(code)
-:language: java
+  :language: java
 
 .. toctree::
-:name: getting_started_toc
+  :name: getting_started_toc
    :includehidden:
 
 Getting Started
@@ -76,8 +76,8 @@ our example we are going to choose the following values
 :Group Id: com.example
 :Beadledom Version: (whatever the default)
 
-  Feel free to choose whatever you like, we are just calling it out here to make it easier to references
-  pieces of the service later.
+Feel free to choose whatever you like, we are just calling it out here to make it easier to references
+pieces of the service later.
 
 Running Our Service
 -------------------
@@ -243,7 +243,7 @@ webapp/META-INF
 +++++++++++++++
 
 :Files:
-    - **web.xml** - deployment descriptor that loads our context listener class as our servlets entry point
+  - **web.xml** - deployment descriptor that loads our context listener class as our servlets entry point
 
 resources
 +++++++++
@@ -261,7 +261,7 @@ AwesomeThingContextListener
 +++++++++++++++++++++++++++
 
 .. Note:: Your class names might be slightly different depending on what you choose for your
-``Project Name``.
+  ``Project Name``.
 
 .. code-block:: java
 

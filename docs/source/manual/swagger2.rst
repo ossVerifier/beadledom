@@ -23,7 +23,7 @@ Download
 Usage
 -----
 
-Install the `SwaggerModule <https://github.com/cerner/beadledom/blob/master/swagger/src/main/java/com/cerner/beadledom/swagger/SwaggerModule.java>`_ to enable
+Install the `Swagger2Module <https://github.com/cerner/beadledom/blob/master/swagger2/src/main/java/com/cerner/beadledom/swagger2/Swagger2Module.java>`_ to enable
 the ``/api-docs`` endpoint as well as a ``/meta/swagger/ui`` endpoint containing the Swagger ui.
 
 .. code-block:: java
