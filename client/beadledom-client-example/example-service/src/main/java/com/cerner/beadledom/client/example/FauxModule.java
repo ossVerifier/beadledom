@@ -21,8 +21,8 @@ public class FauxModule extends AbstractModule {
   @Override
   protected void configure() {
     install(new RequestScopeModule());
-    bind(ResourceOne.class).to(ResourceOneImpl.class);
-    bind(ResourceTwo.class).to(ResourceTwoImpl.class);
+    bind(ResourceOneImpl.class);
+    bind(ResourceTwoImpl.class);
   }
 
   @Provides
@@ -30,8 +30,7 @@ public class FauxModule extends AbstractModule {
   ObjectMapper provideObjectMapper() {
     ObjectMapper objectMapper = new ObjectMapper();
 
-    objectMapper.setPropertyNamingStrategy(
-        PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+    objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
     objectMapper.setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
     objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);

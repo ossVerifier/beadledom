@@ -21,7 +21,22 @@ Download using Maven:
 Usage
 -----
 
-Installing the ``BeadledomClientModule`` will make a ``BeadledomClient`` object available that can be used for proxying JAX-RS resource interfaces and then making those resources available through Guice.
+Installing the ``BeadledomClientModule`` will make a ``BeadledomClient`` object available that can be used for proxying JAX-RS resource interfaces and then making those resources available through Guice. It is recommended to create a wrapper class such as ``MyClient`` that has accessor methods to the individual JAX-RS resources rather than directly making the JAX-RS resources available through Guice. The reason for this, is that the clients may be used within a Beadledom service, and the JAX-RS client resources that are directly available through Guice will get picked up by the server and it will attempt to use them to serve traffic at the client paths.
+
+.. code-block:: java
+  public class MyClient {
+    private final MyResource myResource;
+
+    MyClient(BeadledomClient client, MyClientConfig config) {
+      BeadledomWebTarget target = client.target(config.uri());
+
+      this.myResource = target.proxy(MyResource.class);
+    }
+
+    public MyResource myResource() {
+      return myResource;
+    }
+  }
 
 .. code-block:: java
 
@@ -38,10 +53,9 @@ Installing the ``BeadledomClientModule`` will make a ``BeadledomClient`` object 
 
     @Provides
     @Singleton
-    MyResource provideMyResource(
+    MyClient provideMyClient(
         @MyClientAnnotation BeadledomClient client, MyClientConfig config) {
-      BeadledomWebTarget target = client.target(config.uri());
-      return target.proxy(MyResource.class);
+      return new MyClient(client, config);
     }
   }
 

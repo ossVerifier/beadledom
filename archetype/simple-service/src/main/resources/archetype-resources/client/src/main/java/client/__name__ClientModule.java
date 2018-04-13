@@ -31,14 +31,8 @@ public class ${name}ClientModule extends AbstractModule {
 
   @Provides
   @Singleton
-  public HelloWorldResource provideHelloWorldResource(BeadledomWebTarget target) {
-    return target.proxy(HelloWorldResource.class);
-  }
-
-  @Provides
-  @Singleton
-  public BeadledomWebTarget provideBeadledomWebTarget(
-      @${name}ClientFeature BeadledomClient client, ${name}Config config) {
-    return client.target(config.getBaseUrl());
+  public ${name}Client provide${name}Client(@${name}ClientFeature BeadledomClient client,
+      ${name}Config config) {
+    return new ${name}Client(client, config);
   }
 }
